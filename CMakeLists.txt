@@ -5,21 +5,33 @@ cmake_minimum_required(VERSION 3.19.0)
 
 set(MBED_PATH ${CMAKE_CURRENT_SOURCE_DIR}/mbed-os CACHE INTERNAL "")
 set(MBED_CONFIG_PATH ${CMAKE_CURRENT_BINARY_DIR} CACHE INTERNAL "")
-set(APP_TARGET mbed-tcp)
 
 include(${MBED_PATH}/tools/cmake/app.cmake)
 
-project(${APP_TARGET})
+project(left)
 
 add_subdirectory(${MBED_PATH})
 
-add_executable(${APP_TARGET}
-    main.cpp
+add_executable(left
+    left/main.cpp
 )
+target_compile_definitions(left PUBLIC LEFT=1)
+target_link_libraries(left mbed-os mbed-netsocket mbed-events)
 
-target_link_libraries(${APP_TARGET} mbed-os mbed-netsocket mbed-events)
+mbed_set_post_build(left)
 
-mbed_set_post_build(${APP_TARGET})
+project(right)
+
+add_executable(right
+    right/main.cpp
+)
+target_compile_definitions(right PUBLIC RIGHT=1)
+target_link_libraries(right mbed-os mbed-netsocket mbed-events)
+
+mbed_set_post_build(right)
+
+
+
 
 option(VERBOSE_BUILD "Have a verbose build process")
 if(VERBOSE_BUILD)

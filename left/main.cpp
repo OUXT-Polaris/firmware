@@ -15,7 +15,7 @@
 #include "mbed.h"
 #include "EthernetInterface.h"
 #include <vector>
-#include "config.hpp"
+#include "../config.hpp"
 
 enum class receiveStatus
 {
