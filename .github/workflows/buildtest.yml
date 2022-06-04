@@ -10,15 +10,23 @@ on:
       - master
 
 jobs:
-  publish:
+  build-cli-v2:
+    container:
+      image: ghcr.io/armmbed/mbed-os-env:master-latest
+
     runs-on: ubuntu-latest
-    container: ghcr.io/armmbed/mbed-os-env
+
+    strategy:
+      matrix:
+        target: [NUCLEO_F767ZI]
+        profile: [develop]
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: build-example-application
         run: |
           set -e
           mbed-tools deploy
-          mbed-tools compile -t GCC_ARM -m NUCLEO_F767ZI --profile develop
+          mbed-tools compile -t GCC_ARM -m ${{ matrix.target }} --profile ${{ matrix.profile }}
