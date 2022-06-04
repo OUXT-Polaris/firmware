@@ -75,6 +75,7 @@ int main(void)
                             count++;
                         }
                         break;
+
                     case receiveStatus::header2:
                         // header1読み込み後
                         // header2が読み込まれたらdata受け取り開始
@@ -92,12 +93,13 @@ int main(void)
                             status = receiveStatus::data;
                         }
                         break;
+
                     case receiveStatus::length:
                         // 長さを保存
                         length = rxBuf[i];
-                        // data.resize(length);
                         status = receiveStatus::data;
                         break;
+
                     case receiveStatus::data:
                         // length == countになるまでdataを保存
                         if (count < length)
@@ -109,10 +111,13 @@ int main(void)
                         else
                         {
                             status = receiveStatus::header1;
+                            // 終了文字と一致する時
                             if (rxBuf[i] == end)
                             {
+                                // リトルエンディアンを直す
                                 uint8_t temp1[4] = {data[3], data[2], data[1], data[0]};
                                 uint8_t temp2[4] = {data[7], data[6], data[5], data[4]};
+                                // byte列 → float
                                 const float period = *reinterpret_cast<float *>(&temp1[0]);
                                 const float value = *reinterpret_cast<float *>(&temp2[0]);
                                 printf("period : %f value : %f\r\n", period, value);
