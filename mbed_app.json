@@ -1,0 +1,10 @@
+{
+  "target_overrides": {
+    "*": {
+      "platform.stdio-baud-rate": 115200,
+      "target.printf_lib": "minimal-printf",
+      "platform.minimal-printf-enable-floating-point": "true",
+      "platform.callback-nontrivial": true
+    }
+  }
+}

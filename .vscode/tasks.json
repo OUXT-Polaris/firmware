@@ -1,0 +1,26 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compile and flash",
+      "type": "shell",
+      "command": "mbed-tools",
+      "args": [
+        "compile",
+        "-m",
+        "NUCLEO_F767ZI",
+        "-t",
+        "GCC_ARM",
+        "--profile",
+        "develop",
+        "-f"
+      ],
+      "group": {
+        "kind": "build", // ビルドタスクとして認識させる
+        "isDefault": true // Cmd + Shift + B で即実行
+      }
+    }
+  ]
+}
