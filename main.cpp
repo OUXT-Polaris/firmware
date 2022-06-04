@@ -17,6 +17,14 @@
 #include <vector>
 #include "config.hpp"
 
+enum class receiveStatus
+{
+    header1 = 0,
+    header2 = 1,
+    length = 2,
+    data = 3,
+};
+
 int main(void)
 {
     const uint8_t header1 = 0xFF;
@@ -29,7 +37,7 @@ int main(void)
     PwmOut led(A0);
     uint8_t rxBuf[32] = {0};
     std::vector<uint8_t> data;
-    uint8_t status = 0;
+    receiveStatus status = receiveStatus::header1;
     uint8_t length = 0;
     uint8_t count = 0;
 
@@ -57,23 +65,22 @@ int main(void)
             {
                 for (int i = 0; i < sizeof(rxBuf); i++)
                 {
-                    // printf("received : %x\r\n", rxBuf[i]);
                     switch (status)
                     {
-                    case 0:
+                    case receiveStatus::header1:
                         if (rxBuf[i] == header1)
                         {
-                            status = 1;
+                            status = receiveStatus::header2;
                             data.push_back(rxBuf[i]);
                             count++;
                         }
                         break;
-                    case 1:
+                    case receiveStatus::header2:
                         // header1読み込み後
                         // header2が読み込まれたらdata受け取り開始
                         if (rxBuf[i] == header2)
                         {
-                            status = 2;
+                            status = receiveStatus::length;
                             data.clear();
                             count = 0;
                         }
@@ -82,16 +89,16 @@ int main(void)
                         {
                             data.push_back(rxBuf[i]);
                             count++;
-                            status = 3;
+                            status = receiveStatus::data;
                         }
                         break;
-                    case 2:
+                    case receiveStatus::length:
                         // 長さを保存
                         length = rxBuf[i];
                         // data.resize(length);
-                        status = 3;
+                        status = receiveStatus::data;
                         break;
-                    case 3:
+                    case receiveStatus::data:
                         // length == countになるまでdataを保存
                         if (count < length)
                         {
@@ -101,7 +108,7 @@ int main(void)
                         }
                         else
                         {
-                            status = 0;
+                            status = receiveStatus::header1;
                             if (rxBuf[i] == end)
                             {
                                 uint8_t temp1[4] = {data[3], data[2], data[1], data[0]};
