@@ -1,4 +1,6 @@
-# mbed-tcp
+# firmware
+
+firmware for WAM-V and MiniV 2.0
 
 ## 使い方
 ```
