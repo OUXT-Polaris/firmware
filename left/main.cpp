@@ -114,15 +114,12 @@ int main(void)
                             // 終了文字と一致する時
                             if (rxBuf[i] == end)
                             {
-                                // リトルエンディアンを直す
-                                uint8_t temp1[4] = {data[3], data[2], data[1], data[0]};
-                                uint8_t temp2[4] = {data[7], data[6], data[5], data[4]};
-                                // byte列 → float
-                                const float period = *reinterpret_cast<float *>(&temp1[0]);
-                                const float value = *reinterpret_cast<float *>(&temp2[0]);
-                                printf("period : %f value : %f\r\n", period, value);
-                                led.period(period);
-                                led.write(value);
+                                // byte列 → double
+                                const double period = *reinterpret_cast<double *>(&data[0]);
+                                const double value = *reinterpret_cast<double *>(&data[sizeof(double)]);
+                                printf("period : %lf value : %lf\r\n", period, value);
+                                led.period(static_cast<float>(period));
+                                led.write(static_cast<float>(value));
                             }
                         }
                         break;
