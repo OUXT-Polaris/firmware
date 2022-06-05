@@ -10,7 +10,7 @@ on:
       - master
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
     container: ghcr.io/armmbed/mbed-os-env
     steps:
@@ -19,3 +19,7 @@ jobs:
         with:
           target_board: NUCLEO_F767ZI
           toolchain: GCC_ARM
+      - uses: actions/upload-artifact@v3
+        with:
+          name: bin
+          path: .
