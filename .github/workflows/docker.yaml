@@ -16,6 +16,8 @@ jobs:
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v2
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to Docker Hub
@@ -29,8 +31,9 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           context: .
+          platforms: linux/amd64,linux/arm64
           file: ./Dockerfile
-          tags: wamvtan/firmware_builder:latest
-          cache-from: type=registry,ref=wamvtan/firmware_builder:latest
-          cache-to: type=registry,ref=wamvtan/firmware_builder:latest
+          tags: wamvtan/firmware_builder:${{github.ref_name}}-latest
+          cache-from: type=registry,ref=wamvtan/firmware_builder:${{github.ref_name}}-latest
+          cache-to: type=registry,ref=wamvtan/firmware_builder:${{github.ref_name}}-latest
           push: true
