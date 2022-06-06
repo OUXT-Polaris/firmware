@@ -1,4 +1,4 @@
-FROM ghcr.io/armmbed/mbed-os-env
+FROM ghcr.io/armmbed/mbed-os-env:master-latest
 RUN mkdir workspace
 COPY . /workspace
 WORKDIR /workspace
