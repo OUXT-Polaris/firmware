@@ -13,7 +13,7 @@ project(left)
 add_subdirectory(${MBED_PATH})
 
 add_executable(left
-    left/main.cpp
+    main.cpp
 )
 target_compile_definitions(left PUBLIC LEFT=1)
 target_link_libraries(left mbed-os mbed-netsocket mbed-events)
@@ -23,7 +23,7 @@ mbed_set_post_build(left)
 project(right)
 
 add_executable(right
-    right/main.cpp
+    main.cpp
 )
 target_compile_definitions(right PUBLIC RIGHT=1)
 target_link_libraries(right mbed-os mbed-netsocket mbed-events)
