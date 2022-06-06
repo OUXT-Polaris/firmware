@@ -29,8 +29,8 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          context: ./docker
-          file: ./docker/Dockerfile
+          context: .
+          file: ./Dockerfile
           tags: wamvtan/firmware_builder:latest
           cache-from: type=registry,ref=wamvtan/firmware_builder:latest
           cache-to: type=registry,ref=wamvtan/firmware_builder:latest
@@ -41,8 +41,8 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          context: ./docker
-          file: ./docker/Dockerfile
+          context: .
+          file: ./Dockerfile
           tags: wamvtan/firmware_builder:latest
           cache-from: type=registry,ref=wamvtan/firmware_builder:latest
           cache-to: type=registry,ref=wamvtan/firmware_builder:latest
