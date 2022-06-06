@@ -71,7 +71,7 @@ int main(void)
                         if (rxBuf[i] == header1)
                         {
                             status = receiveStatus::header2;
-                            data.push_back(rxBuf[i]);
+                            data.emplace_back(rxBuf[i]);
                             count++;
                         }
                         break;
@@ -88,7 +88,7 @@ int main(void)
                         else
                         // header2以外が読み込まれたらdata受け取り続行
                         {
-                            data.push_back(rxBuf[i]);
+                            data.emplace_back(rxBuf[i]);
                             count++;
                             status = receiveStatus::data;
                         }
@@ -104,7 +104,7 @@ int main(void)
                         // length == countになるまでdataを保存
                         if (count < length)
                         {
-                            data.push_back(rxBuf[i]);
+                            data.emplace_back(rxBuf[i]);
 
                             count++;
                         }
