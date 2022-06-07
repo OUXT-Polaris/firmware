@@ -21,7 +21,7 @@ jobs:
         with:
           path: checkout
       - name: debug
-        run: cd /checkout && ls
+        run: echo $GITHUB_WORKSPACE
       - name: copy files from checkout directory
         run: cp -r /workspace/checkout/* /workspace
       - uses: OUXT-Polaris/build-mbed-app-action@master
