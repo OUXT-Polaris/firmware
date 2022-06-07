@@ -27,7 +27,7 @@ jobs:
       - name: debug
         run: ls
       - name: copy files from checkout directory
-        run: cp -r checkout/* .
+        run: cp -r /workspace/checkout/* /workspace
       - uses: OUXT-Polaris/build-mbed-app-action@master
         with:
           target_board: NUCLEO_F767ZI
