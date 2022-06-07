@@ -22,6 +22,8 @@ jobs:
           path: checkout
       - name: copy files from checkout directory
         run: cp -r $GITHUB_WORKSPACE/checkout/* /workspace
+      - name: debug
+        run: ls /workspace
       - uses: OUXT-Polaris/build-mbed-app-action@master
         with:
           target_board: NUCLEO_F767ZI
