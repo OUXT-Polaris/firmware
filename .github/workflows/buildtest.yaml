@@ -15,6 +15,10 @@ jobs:
     container: wamvtan/firmware_builder:latest
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: .
+          key: firmware
       - uses: OUXT-Polaris/build-mbed-app-action@master
         with:
           target_board: NUCLEO_F767ZI
