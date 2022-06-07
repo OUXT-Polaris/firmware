@@ -12,7 +12,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: ghcr.io/armmbed/mbed-os-env:master-latest
+    container: wamvtan/firmware_builder:latest
     steps:
       - uses: actions/checkout@v3
       - uses: OUXT-Polaris/build-mbed-app-action@master
