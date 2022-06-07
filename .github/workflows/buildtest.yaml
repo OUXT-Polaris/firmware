@@ -23,9 +23,7 @@ jobs:
         with:
           path: checkout
       - name: debug
-        run: pwd
-      - name: debug
-        run: ls
+        run: cd checkout && ls
       - name: copy files from checkout directory
         run: cp -r /workspace/checkout/* /workspace
       - uses: OUXT-Polaris/build-mbed-app-action@master
