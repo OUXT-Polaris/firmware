@@ -18,12 +18,12 @@ jobs:
         working-directory: /workspace
     steps:
       - name: make checkout directory
-        run: mkdir ../checkout
+        run: mkdir checkout
       - uses: actions/checkout@v3
         with:
-          path: ../checkout
+          path: checkout
       - name: copy files from checkout directory
-        run: cp -r ../checkout .
+        run: cp -r checkout/* .
       - uses: OUXT-Polaris/build-mbed-app-action@master
         with:
           target_board: NUCLEO_F767ZI
