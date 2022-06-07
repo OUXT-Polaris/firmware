@@ -27,5 +27,3 @@ jobs:
         with:
           name: bin
           path: cmake_build/NUCLEO_F767ZI/develop/GCC_ARM/*.bin
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
