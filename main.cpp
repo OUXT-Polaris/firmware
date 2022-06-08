@@ -63,7 +63,7 @@ int main(void)
         {
             while (client->recv(rxBuf, sizeof(rxBuf)) > 0)
             {
-                for (int i = 0; i < sizeof(rxBuf); i++)
+                for (unsigned int i = 0; i < sizeof(rxBuf); i++)
                 {
                     switch (status)
                     {
