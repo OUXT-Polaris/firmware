@@ -12,3 +12,10 @@ mbed-tools deploy
 mbed-tools compile -m NUCLEO_F767ZI -t GCC_ARM --profile develop -f
 ```
 でビルドと書き込みが同時にできる
+
+## Dockerでのビルド
+
+注意！事前にDockerがインストールされているのを確認してください。
+```
+sh build.sh
+```
