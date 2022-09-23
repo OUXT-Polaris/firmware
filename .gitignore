@@ -2,3 +2,4 @@ cmake_build/
 mbed-os/
 .python-version
 .vscode/
+mros2/
