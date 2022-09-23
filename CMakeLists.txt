@@ -42,21 +42,21 @@ set(APP_TARGET mros2-mbed)
 
 #include(${MBED_PATH}/tools/cmake/app.cmake)
 
-add_subdirectory(${MBED_PATH})
+#add_subdirectory(${MBED_PATH})
 
-# if(DEFINED ENV{APPNAME})
+#if(DEFINED ENV{APPNAME})
 #  set(APP_NAME $ENV{APPNAME})
 #else()
 #  set(APP_NAME "echoreply_string")
 #endif()
 #message(STATUS "APP_NAME=${APP_NAME}")
 
-#execute_process(COMMAND git submodule update --init --recursive
-#                WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/mros2)
-#add_library(mros2 INTERFACE)
-#add_subdirectory(mros2)
+execute_process(COMMAND git submodule update --init --recursive
+                WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/mros2)
+add_library(mros2 INTERFACE)
+add_subdirectory(mros2)
 
-#set(RTPS_CONFIG_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/include")
+set(RTPS_CONFIG_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/include")
 
 add_executable(battery_monitor
     battery_monitor.cpp
