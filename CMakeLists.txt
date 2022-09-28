@@ -55,13 +55,15 @@ execute_process(COMMAND git submodule update --init --recursive
                 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/mros2)
 add_library(mros2 INTERFACE)
 add_subdirectory(mros2)
+include_directories(mros2/include)
+include_directories(include)
 
 set(RTPS_CONFIG_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/include")
 
 add_executable(battery_monitor
-    battery_monitor.cpp
+    battery_monitor/app.cpp
 )
-target_link_libraries(battery_monitor mbed-os mbed-netsocket mbed-events)
+target_link_libraries(battery_monitor mbed-os mbed-lwipstack mros2)
 
 mbed_set_post_build(battery_monitor)
 
