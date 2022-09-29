@@ -57,6 +57,7 @@ add_library(mros2 INTERFACE)
 add_subdirectory(mros2)
 include_directories(mros2/include)
 include_directories(include)
+include_directories(battery_monitor)
 
 set(RTPS_CONFIG_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/include")
 
