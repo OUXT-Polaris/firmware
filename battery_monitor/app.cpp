@@ -29,11 +29,9 @@ int main()
     uint8_t publish_num = 1;
     while (true)
     {
-        msg.data = publish_count;
+        msg.data = publish_num;
         MROS2_INFO("publishing uint8 msg!!");
         //pub.publish(msg);
-
-        publish_count = publish_count + 0.1;
         osDelay(1000);
     }
 }
