@@ -1,7 +1,7 @@
 #include "EthernetInterface.h"
 #include "mbed.h"
 #include "mros2.h"
-#include "std_msgs/msg/int8.hpp"
+#include "std_msgs/msg/u_int8.hpp"
 
 #define IP_ADDRESS ("192.168.11.2")      /* IP address */
 #define SUBNET_MASK ("255.255.255.0")    /* Subnet mask */
@@ -15,5 +15,5 @@ int main()
   nsapi_size_or_error_t result = network.connect();
   mros2::init(0, NULL);
   mros2::Node node = mros2::Node::create_node("battery_monitor_node");
-  mros2::Publisher pub = node.create_publisher<std_msgs::msg::Uint8>("battery_state", 1);
+  mros2::Publisher pub = node.create_publisher<std_msgs::msg::UInt8>("battery_state", 1);
 }
