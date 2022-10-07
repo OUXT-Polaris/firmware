@@ -1,3 +1,4 @@
+#include "EthernetInterface.h"
 #include "mbed.h"
 #include "mros2.h"
 #include "std_msgs/msg/u_int8.hpp"
